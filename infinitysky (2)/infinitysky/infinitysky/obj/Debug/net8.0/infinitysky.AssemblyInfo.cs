@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("infinitysky")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+abae1789d3fa59d7a33d5e1b1ed1bc206bb8f931")]
 [assembly: System.Reflection.AssemblyProductAttribute("infinitysky")]
 [assembly: System.Reflection.AssemblyTitleAttribute("infinitysky")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
