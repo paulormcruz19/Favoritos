@@ -114,12 +114,15 @@
 
                                                     <p class="product-period">Período: @item.PeriodoPlano</p>
 
-                                                    <!--<img src="/Imagens/favoritar.png" class="product-favoritar" alt="favoritar" />-->
-
+                                                 
                                                     <p class="product-parcel"> @item.ParcelaPlano</p>
 
                                                     <p class="product-price">R$@item.Valor</p>
-                                                    <img src="/Imagens/favoritar.png" class="product-favoritar" alt="favoritar" />
+
+                                                    <a href="@Url.Action("Favoritos", "Home")">
+                                                        <img src="/Imagens/favoritar.png" class="product-favoritar" alt="favoritar" />
+                                                    </a>
+
                                                     <hr />
                                                     <div class="d-flex align-items-center justify-content-between pb-2 mb-1">
                                                     @using (Html.BeginForm("AdicionarItem", "Home", FormMethod.Post))

@@ -1651,19 +1651,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Marina\\.nuget\\packages\\": {}
+    "C:\\Users\\anapa\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Marina\\Desktop\\Favoritos\\infinitysky (2)\\infinitysky\\infinitysky\\infinitysky.csproj",
+      "projectUniqueName": "C:\\Users\\anapa\\Desktop\\Favoritos\\infinitysky (2)\\infinitysky\\infinitysky\\infinitysky.csproj",
       "projectName": "infinitysky",
-      "projectPath": "C:\\Users\\Marina\\Desktop\\Favoritos\\infinitysky (2)\\infinitysky\\infinitysky\\infinitysky.csproj",
-      "packagesPath": "C:\\Users\\Marina\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Marina\\Desktop\\Favoritos\\infinitysky (2)\\infinitysky\\infinitysky\\obj\\",
+      "projectPath": "C:\\Users\\anapa\\Desktop\\Favoritos\\infinitysky (2)\\infinitysky\\infinitysky\\infinitysky.csproj",
+      "packagesPath": "C:\\Users\\anapa\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\anapa\\Desktop\\Favoritos\\infinitysky (2)\\infinitysky\\infinitysky\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Marina\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\anapa\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1671,6 +1671,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

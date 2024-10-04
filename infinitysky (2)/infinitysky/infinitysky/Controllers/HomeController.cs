@@ -142,6 +142,11 @@ namespace infinitysky.Controllers
             return RedirectToAction(nameof(PainelCliente));
         }
 
+        public IActionResult Favoritos()
+        {
+            return View();
+        }
+
         public IActionResult Sobre()
         {
             return View();
