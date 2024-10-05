@@ -144,7 +144,8 @@ namespace infinitysky.Controllers
 
         public IActionResult Favoritos()
         {
-            return View();
+            var carrinho = _cookieCarrinhoCompra.Consultar();
+            return View(carrinho);
         }
 
         public IActionResult Sobre()

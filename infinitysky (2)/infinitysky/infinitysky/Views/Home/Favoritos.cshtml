@@ -21,42 +21,51 @@
 <div class="container mt-4">
     <section id="order">
         <div class="card p-3">
-            <table class="table table-hover shopping-cart-wrap">
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        var subTotal = item.QtdPlano * Convert.ToDecimal(item.Valor);
-                        <tr>
-                            <td class="d-flex align-items-center">
-                                <div class="me-3">
-                                    <figure class="media">
-                                        <div class="image-container">
-                                            @if (item.image_plano != null)
-                                            {
-                                                <img src="/@item.image_plano" class="product-image" alt="Imagem do Plano" />
-                                            }
-                                            else
-                                            {
-                                                <img src="/Imagens/imagenotfound.png" class="product-image" alt="Imagem Padrão" />
-                                            }
-                                        </div>
-                                    </figure>
-                                </div>
-                                <figcaption class="media-body text-end">
-                                    <div class="pt-3">
-                                        <h5 class="titulo-plano">@item.Nome</h5>
-                                        <p class="product-info">Hospedagem: @item.HospedagemPlano</p>
-                                        <p class="product-info">Curso: @item.CursoPlano</p>
-                                        <p class="product-info">Escola: @item.InstituicaoPlano</p>
-                                        <p class="product-info">Período: @item.PeriodoPlano</p>
-                                        <p class="product-parcela">@item.ParcelaPlano</p>
+            @if (!Model.Any())
+            {
+                <div class="empty-cart text-center">
+                    <p>Sua lista de favoritos está vazia.</p>
+                </div>
+            }
+            else
+            {
+                <table class="table table-hover shopping-cart-wrap">
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            var subTotal = item.QtdPlano * Convert.ToDecimal(item.Valor);
+                            <tr>
+                                <td class="d-flex align-items-center">
+                                    <div class="me-3">
+                                        <figure class="media">
+                                            <div class="image-container">
+                                                @if (item.image_plano != null)
+                                                {
+                                                    <img src="/@item.image_plano" class="product-image" alt="Imagem do Plano" />
+                                                }
+                                                else
+                                                {
+                                                    <img src="/Imagens/imagenotfound.png" class="product-image" alt="Imagem Padrão" />
+                                                }
+                                            </div>
+                                        </figure>
                                     </div>
-                                </figcaption>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+                                    <figcaption class="media-body text-end">
+                                        <div class="pt-3">
+                                            <h5 class="titulo-plano">@item.Nome</h5>
+                                            <p class="product-info">Hospedagem: @item.HospedagemPlano</p>
+                                            <p class="product-info">Curso: @item.CursoPlano</p>
+                                            <p class="product-info">Escola: @item.InstituicaoPlano</p>
+                                            <p class="product-info">Período: @item.PeriodoPlano</p>
+                                            <p class="product-parcela">@item.ParcelaPlano</p>
+                                        </div>
+                                    </figcaption>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
         </div>
     </section>
 </div>
