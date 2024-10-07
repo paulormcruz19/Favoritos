@@ -17,7 +17,7 @@ namespace infinitysky.FavoritosCompra
 
         public void Cadastrar(Planos item)
         {
-            var favoritos = Consultar() ?? new List<Planos>();
+            var favoritos = Consultar();
             favoritos.Add(item);
             SalvarFavoritos(favoritos);
         }
@@ -26,9 +26,10 @@ namespace infinitysky.FavoritosCompra
         {
             if (_httpContextAccessor.HttpContext.Request.Cookies.TryGetValue(CookieFavoritos, out var json))
             {
-                return JsonConvert.DeserializeObject<List<Planos>>(json);
+                var favoritos = JsonConvert.DeserializeObject<List<Planos>>(json);
+                return favoritos ?? new List<Planos>(); // Retorna lista vazia se nulo
             }
-            return null;
+            return new List<Planos>(); // Retorna lista vazia se não houver cookie
         }
 
         public void DiminuirPlano(Planos item)

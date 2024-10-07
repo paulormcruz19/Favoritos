@@ -5,6 +5,7 @@ using infinitysky.FavoritosCompra;
 using InfinitySky.Libraries.Login;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace infinitysky.Controllers
 {
@@ -215,7 +216,13 @@ namespace infinitysky.Controllers
         public IActionResult Favoritos()
         {
             var favoritos = _cookieFavoritosCompra.Consultar();
-            return View(favoritos);
+
+            if (favoritos == null)
+            {
+                favoritos = new List<Planos>(); // Garante que nunca seja nulo
+            }
+
+            return View(favoritos); // Retorna para a view
         }
 
         public IActionResult Sobre()

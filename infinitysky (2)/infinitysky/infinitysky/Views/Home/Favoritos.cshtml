@@ -21,7 +21,7 @@
 <div class="container mt-4">
     <section id="order">
         <div class="card p-3">
-            @if (!Model.Any())
+            @if (Model == null || !Model.Any())
             {
                 <div class="empty-cart text-center">
                     <p>Sua lista de favoritos está vazia.</p>
@@ -33,13 +33,12 @@
                     <tbody>
                         @foreach (var itemfavoritos in Model)
                         {
-                            var subTotal = itemfavoritos.QtdPlano * Convert.ToDecimal(itemfavoritos.Valor);
                             <tr>
                                 <td class="d-flex align-items-center">
                                     <div class="me-3">
                                         <figure class="media">
                                             <div class="image-container">
-                                                @if (itemfavoritos.image_plano != null)
+                                                @if (!string.IsNullOrEmpty(itemfavoritos.image_plano))
                                                 {
                                                     <img src="/@itemfavoritos.image_plano" class="product-image" alt="Imagem do Plano" />
                                                 }
