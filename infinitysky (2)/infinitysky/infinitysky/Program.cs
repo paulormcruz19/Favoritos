@@ -1,4 +1,5 @@
 using infinitysky.CarrinhoCompra;
+using infinitysky.FavoritosCompra;
 using infinitysky.Repository;
 using InfinitySky.Libraries.Login;
 
@@ -16,6 +17,7 @@ builder.Services.AddScoped<IPlanosRepositorio, PlanosRepositorio>();
 
 // Adicionar CookieCarrinhoCompra
 builder.Services.AddScoped<CookieCarrinhoCompra>();
+builder.Services.AddScoped<CookieFavoritosCompra>();
 builder.Services.AddScoped<infinitysky.Cookie.Cookie>();
 
 // Adicionar serviços de Sessão e Login

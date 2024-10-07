@@ -1,6 +1,7 @@
 using infinitysky.Models;
 using infinitysky.Repository;
 using infinitysky.CarrinhoCompra;
+using infinitysky.FavoritosCompra;
 using InfinitySky.Libraries.Login;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -15,14 +16,17 @@ namespace infinitysky.Controllers
         private LoginCliente _loginCliente;
         private IPlanosRepositorio _planosRepositorio;
         private CookieCarrinhoCompra _cookieCarrinhoCompra;
+        private CookieFavoritosCompra _cookieFavoritosCompra;
 
-        public HomeController(ILogger<HomeController> logger, IClienteRepository clienteRepositorio, LoginCliente loginCliente, IPlanosRepositorio planosRepositorio, CookieCarrinhoCompra cookieCarrinhoCompra)
+        public HomeController(ILogger<HomeController> logger, IClienteRepository clienteRepositorio, LoginCliente loginCliente, IPlanosRepositorio planosRepositorio, CookieCarrinhoCompra cookieCarrinhoCompra, CookieFavoritosCompra cookieFavoritosCompra)
+      
         {
             _logger = logger;
             _clienteRepositorio = clienteRepositorio;
             _loginCliente = loginCliente;
             _planosRepositorio = planosRepositorio;
             _cookieCarrinhoCompra = cookieCarrinhoCompra;
+            _cookieFavoritosCompra = cookieFavoritosCompra;
         }
 
         public IActionResult Index()
@@ -100,6 +104,37 @@ namespace infinitysky.Controllers
             }
         }
 
+        [HttpPost]
+        public IActionResult AdicionarItemFavoritos(Int64 id)
+        {
+            Planos plano = _planosRepositorio.ObterPlano(id);
+
+            if (plano == null)
+            {
+                return View("NaoExisteItem");
+            }
+            else
+            {
+                var itemfavoritos = new Planos()
+                {
+                    IdPlano = plano.IdPlano,
+                    QtdPlano = 1, // Você pode começar a quantidade em 1
+                    image_plano = plano.image_plano, // Captura a imagem
+                    Nome = plano.Nome, // Captura o nome
+                    Valor = plano.Valor, // Captura o valor
+                    HospedagemPlano = plano.HospedagemPlano, // Captura a hospedagem
+                    CursoPlano = plano.CursoPlano, // Captura o curso
+                    InstituicaoPlano = plano.InstituicaoPlano, // Captura a instituição
+                    DescricaoPlano = plano.DescricaoPlano, // Captura a descrição
+                    PeriodoPlano = plano.PeriodoPlano, // Captura o período
+                    ParcelaPlano = plano.ParcelaPlano,
+                };
+
+                _cookieFavoritosCompra.Cadastrar(itemfavoritos);
+                return RedirectToAction(nameof(Favoritos));
+            }
+        }
+
         public IActionResult DiminuirItem(Int64 id)
         {
             Planos plano = _planosRepositorio.ObterPlano(id);
@@ -129,9 +164,44 @@ namespace infinitysky.Controllers
             }
         }
 
+        public IActionResult DiminuirItemFavoritos(Int64 id)
+        {
+            Planos plano = _planosRepositorio.ObterPlano(id);
+            if (plano == null)
+            {
+                return View("NaoExisteItem");
+            }
+            else
+            {
+                var itemfavoritos = new Planos()
+                {
+                    IdPlano = plano.IdPlano,
+                    QtdPlano = 1, // Você pode começar a quantidade em 1
+                    image_plano = plano.image_plano, // Captura a imagem
+                    Nome = plano.Nome, // Captura o nome
+                    Valor = plano.Valor, // Captura o valor
+                    HospedagemPlano = plano.HospedagemPlano, // Captura a hospedagem
+                    CursoPlano = plano.CursoPlano, // Captura o curso
+                    InstituicaoPlano = plano.InstituicaoPlano, // Captura a instituição
+                    DescricaoPlano = plano.DescricaoPlano, // Captura a descrição
+                    PeriodoPlano = plano.PeriodoPlano, // Captura o período
+                    ParcelaPlano = plano.ParcelaPlano,
+                };
+
+                _cookieFavoritosCompra.DiminuirPlano(itemfavoritos);
+                return RedirectToAction(nameof(Carrinho));
+            }
+        }
+
         public IActionResult RemoverItem(Int64 id)
         {
             _cookieCarrinhoCompra.Remover(new Planos() { IdPlano = id });
+            return Json(new { success = true });
+        }
+
+        public IActionResult RemoverItemFavoritos(Int64 id)
+        {
+            _cookieFavoritosCompra.Remover(new Planos() { IdPlano = id });
             return Json(new { success = true });
         }
 
@@ -144,8 +214,8 @@ namespace infinitysky.Controllers
 
         public IActionResult Favoritos()
         {
-            var carrinho = _cookieCarrinhoCompra.Consultar();
-            return View(carrinho);
+            var favoritos = _cookieFavoritosCompra.Consultar();
+            return View(favoritos);
         }
 
         public IActionResult Sobre()

@@ -31,17 +31,17 @@
             {
                 <table class="table table-hover shopping-cart-wrap">
                     <tbody>
-                        @foreach (var item in Model)
+                        @foreach (var itemfavoritos in Model)
                         {
-                            var subTotal = item.QtdPlano * Convert.ToDecimal(item.Valor);
+                            var subTotal = itemfavoritos.QtdPlano * Convert.ToDecimal(itemfavoritos.Valor);
                             <tr>
                                 <td class="d-flex align-items-center">
                                     <div class="me-3">
                                         <figure class="media">
                                             <div class="image-container">
-                                                @if (item.image_plano != null)
+                                                @if (itemfavoritos.image_plano != null)
                                                 {
-                                                    <img src="/@item.image_plano" class="product-image" alt="Imagem do Plano" />
+                                                    <img src="/@itemfavoritos.image_plano" class="product-image" alt="Imagem do Plano" />
                                                 }
                                                 else
                                                 {
@@ -52,12 +52,12 @@
                                     </div>
                                     <figcaption class="media-body text-end">
                                         <div class="pt-3">
-                                            <h5 class="titulo-plano">@item.Nome</h5>
-                                            <p class="product-info">Hospedagem: @item.HospedagemPlano</p>
-                                            <p class="product-info">Curso: @item.CursoPlano</p>
-                                            <p class="product-info">Escola: @item.InstituicaoPlano</p>
-                                            <p class="product-info">Período: @item.PeriodoPlano</p>
-                                            <p class="product-parcela">@item.ParcelaPlano</p>
+                                            <h5 class="titulo-plano">@itemfavoritos.Nome</h5>
+                                            <p class="product-info">Hospedagem: @itemfavoritos.HospedagemPlano</p>
+                                            <p class="product-info">Curso: @itemfavoritos.CursoPlano</p>
+                                            <p class="product-info">Escola: @itemfavoritos.InstituicaoPlano</p>
+                                            <p class="product-info">Período: @itemfavoritos.PeriodoPlano</p>
+                                            <p class="product-parcela">@itemfavoritos.ParcelaPlano</p>
                                         </div>
                                     </figcaption>
                                 </td>
